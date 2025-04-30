@@ -4,7 +4,7 @@
   "description": "一站式前端多平台部署工具，支持FTP、OSS、TOS、COS等多种部署方式。",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test.js"
   },
   "repository": {
     "type": "git",
