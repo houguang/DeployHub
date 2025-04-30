@@ -1,34 +1,35 @@
 {
     "common": {
-        "localPath": "./test_files/",
-        "remotePath": "/",
+        "localPath": "local/dir",
+        "remotePath": "remote/dir",
         "ignoreExtensions": [
-            ".map"
+            ".log",
+            ".tmp"
         ]
     },
     "ftp": {
-        "host": "127.0.0.1",
-        "user": "username",
-        "password": "password",
+        "host": "your-ftp-host",
+        "user": "your-username",
+        "password": "your-password",
         "port": 21
     },
     "oss": {
-        "region": "oss-cn-beijing",
-        "accessKeyId": "id",
-        "accessKeySecret": "secret",
-        "bucket": "keyflow"
+        "region": "your-region",
+        "accessKeyId": "your-access-key-id",
+        "accessKeySecret": "your-access-key-secret",
+        "bucket": "your-bucket-name"
     },
     "cos": {
-        "SecretId": "id",
-        "SecretKey": "secret",
-        "Bucket": "test-1258437818",
-        "Region": "ap-beijing"
+        "SecretId": "your-secret-id",
+        "SecretKey": "your-secret-key",
+        "Bucket": "your-bucket-name",
+        "Region": "your-region"
     },
     "tos": {
-        "accessKeyId": "id",
-        "accessKeySecret": "secret",
-        "region": "cn-beijing",
-        "bucket": "test-deployhub",
+        "accessKeyId": "your-access-key-id",
+        "accessKeySecret": "your-access-key-secret",
+        "region": "your-region",
+        "bucket": "your-bucket-name",
         "remotePath": "."
     }
 }
