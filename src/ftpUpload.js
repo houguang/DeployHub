@@ -1,4 +1,27 @@
 const ftp = require('basic-ftp');
+const path = require('path');
+
+/**
+ * 创建远程目录（递归）
+ * @param {ftp.Client} client - FTP 客户端实例
+ * @param {string} remotePath - 远程目录路径
+ */
+async function ensureRemoteDirectory(client, remotePath) {
+    const dirs = remotePath.split('/').filter(Boolean);
+    let currentPath = '';
+    
+    for (const dir of dirs) {
+        currentPath += '/' + dir;
+        try {
+            await client.ensureDir(currentPath);
+        } catch (error) {
+            // 忽略目录已存在的错误
+            if (!error.message.includes('Directory already exists')) {
+                throw error;
+            }
+        }
+    }
+}
 
 /**
  * 使用 FTP 上传文件
@@ -14,6 +37,12 @@ async function uploadViaFTP(config, localFilePath, remoteFilePath, currentFileIn
     try {
         process.stdout.write(`\r[FTP] ${currentFileIndex + 1}/${totalFiles} [${localFilePath}]`);
         await client.access(config);
+        
+        // 确保远程目录存在
+        const remoteDir = path.dirname(remoteFilePath);
+        await ensureRemoteDirectory(client, remoteDir);
+        
+        // 上传文件
         await client.uploadFrom(localFilePath, remoteFilePath);
     } catch (error) {
         console.error(`\n[FTP] 文件上传失败: ${localFilePath}`, error);

@@ -6,15 +6,40 @@ const fs = require('fs');
 const path = require('path');
 
 /**
- * 过滤指定后缀的文件
+ * 递归获取目录下的所有文件
  * @param {string} dirPath - 目录路径
  * @param {string[]} ignoreExtensions - 要忽略的文件后缀数组
+ * @param {string} baseDir - 基础目录路径（用于计算相对路径）
  * @returns {string[]} - 符合条件的文件路径数组
  */
-function filterFilesByExtension(dirPath, ignoreExtensions) {
+function getAllFiles(dirPath, ignoreExtensions, baseDir = dirPath) {
+    let results = [];
     const files = fs.readdirSync(dirPath);
-    return files.filter(file => !ignoreExtensions.includes(path.extname(file).toLowerCase()))
-        .map(file => path.join(dirPath, file));
+
+    for (const file of files) {
+        const fullPath = path.join(dirPath, file);
+        const stat = fs.statSync(fullPath);
+
+        if (stat.isDirectory()) {
+            results = results.concat(getAllFiles(fullPath, ignoreExtensions, baseDir));
+        } else {
+            if (!ignoreExtensions.includes(path.extname(file).toLowerCase())) {
+                results.push(fullPath);
+            }
+        }
+    }
+
+    return results;
+}
+
+/**
+ * 获取文件相对路径
+ * @param {string} fullPath - 完整文件路径
+ * @param {string} basePath - 基础目录路径
+ * @returns {string} - 相对路径
+ */
+function getRelativePath(fullPath, basePath) {
+    return path.relative(basePath, fullPath);
 }
 
 /**
@@ -43,11 +68,14 @@ async function uploadDirectory(uploadFunc, config, commonConfig) {
         const remotePath = cfg.remotePath || commonConfig.remotePath;
         const ignoreExtensions = cfg.ignoreExtensions || commonConfig.ignoreExtensions;
 
-        const files = filterFilesByExtension(localPath, ignoreExtensions);
-        for (let j = 0; j < files.length; j++) {
-            const file = files[j];
-            const remoteFilePath = convertPathSeparator(path.join(remotePath, path.basename(file)));
-            await uploadFuncs[i](cfg, file, remoteFilePath, j, files.length);
+        const files = getAllFiles(localPath, ignoreExtensions);
+        let uploadedCount = 0;
+        const totalFiles = files.length;
+
+        for (const file of files) {
+            const relativePath = getRelativePath(file, localPath);
+            const remoteFilePath = convertPathSeparator(path.join(remotePath, relativePath));
+            await uploadFuncs[i](cfg, file, remoteFilePath, uploadedCount++, totalFiles);
         }
     }
 }
@@ -58,5 +86,5 @@ module.exports = {
     uploadViaCOS: cosUpload,
     uploadViaTOS: tosUpload,
     uploadDirectory,
-    filterFilesByExtension
+    getAllFiles
 };
