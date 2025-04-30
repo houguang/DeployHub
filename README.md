@@ -22,9 +22,9 @@ npm -D install deployhub
 ```json
 {
     "common": {
-        "localPath": "./test_files/",    // 本地文件目录
-        "remotePath": "/",               // 远程目录
-        "ignoreExtensions": [            // 要忽略的文件后缀
+        "localPath": "./test_files/",   
+        "remotePath": "/",              
+        "ignoreExtensions": [           
             ".map"
         ]
     }
@@ -35,10 +35,10 @@ npm -D install deployhub
 ```json
 {
     "ftp": {
-        "host": "127.0.0.1",      // FTP 服务器地址
-        "user": "username",        // FTP 用户名
-        "password": "password",    // FTP 密码
-        "port": 21                 // FTP 端口
+        "host": "127.0.0.1",     
+        "user": "username",      
+        "password": "password",  
+        "port": 21               
     }
 }
 ```
@@ -47,10 +47,10 @@ npm -D install deployhub
 ```json
 {
     "oss": {
-        "region": "oss-cn-beijing",         // OSS 地域
-        "accessKeyId": "id",                // 访问密钥 ID
-        "accessKeySecret": "secret",        // 访问密钥密码
-        "bucket": "bucketName"             // Bucket 名称
+        "region": "oss-cn-beijing",      
+        "accessKeyId": "id",             
+        "accessKeySecret": "secret",     
+        "bucket": "bucketName"           
     }
 }
 ```
@@ -59,10 +59,10 @@ npm -D install deployhub
 ```json
 {
     "cos": {
-        "SecretId": "id",                   // 密钥 ID
-        "SecretKey": "secret",              // 密钥
-        "Bucket": "test-1258437818",        // Bucket 名称
-        "Region": "ap-beijing"              // 地域
+        "SecretId": "id",                
+        "SecretKey": "secret",           
+        "Bucket": "test-1258437818",     
+        "Region": "ap-beijing"           
     }
 }
 ```
@@ -71,10 +71,10 @@ npm -D install deployhub
 ```json
 {
     "tos": {
-        "accessKeyId": "id",                // 访问密钥 ID
-        "accessKeySecret": "secret",        // 访问密钥密码
-        "region": "cn-beijing",             // 地域
-        "bucket": "bucketName"             // Bucket 名称
+        "accessKeyId": "id",              
+        "accessKeySecret": "secret",      
+        "region": "cn-beijing",           
+        "bucket": "bucketName"            
     }
 }
 ```
