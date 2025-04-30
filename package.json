@@ -1,0 +1,37 @@
+{
+  "name": "deployhub",
+  "version": "1.0.0",
+  "description": "一站式前端多平台部署工具，支持FTP、OSS、TOS、COS等多种部署方式。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/houguang/DeployHub.git"
+  },
+  "keywords": [
+    "deploy",
+    "ftp",
+    "oss",
+    "tos",
+    "cos",
+    "deployhub",
+    "多平台部署",
+    "前端部署",
+    "多平台前端部署",
+    "多平台前端部署工具"
+  ],
+  "author": "houguang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/houguang/DeployHub/issues"
+  },
+  "homepage": "https://github.com/houguang/DeployHub#readme",
+  "dependencies": {
+    "@volcengine/tos-sdk": "^2.7.4",
+    "ali-oss": "^6.22.0",
+    "basic-ftp": "^5.0.5",
+    "cos-nodejs-sdk-v5": "^2.14.7"
+  }
+}
