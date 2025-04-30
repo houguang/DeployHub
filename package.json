@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/houguang/DeployHub.git"
+    "url": "https://github.com/houguang/DeployHub.git"
   },
   "keywords": [
     "deploy",
@@ -22,7 +22,7 @@
     "多平台前端部署",
     "多平台前端部署工具"
   ],
-  "author": "houguang",
+  "author": "houguang <houguang@sina.cn>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/houguang/DeployHub/issues"
@@ -33,5 +33,11 @@
     "ali-oss": "^6.22.0",
     "basic-ftp": "^5.0.5",
     "cos-nodejs-sdk-v5": "^2.14.7"
-  }
+  },
+  "files": [
+    "index.js",
+    "src",
+    "README.md"
+  ],
+  "private": false
 }
