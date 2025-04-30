@@ -17,64 +17,39 @@ npm -D install deployhub
 
 ## 配置说明
 配置文件 `config.json` 包含以下部分：
-
-### 公共配置
 ```json
 {
     "common": {
-        "localPath": "./test_files/",   
-        "remotePath": "/",              
-        "ignoreExtensions": [           
+        "localPath": "./test_files/",
+        "remotePath": "/",
+        "ignoreExtensions": [
             ".map"
         ]
-    }
-}
-```
-
-### FTP 配置
-```json
-{
+    },
     "ftp": {
-        "host": "127.0.0.1",     
-        "user": "username",      
-        "password": "password",  
-        "port": 21               
-    }
-}
-```
-
-### 阿里云 OSS 配置
-```json
-{
+        "host": "127.0.0.1",
+        "user": "username",
+        "password": "password",
+        "port": 21
+    },
     "oss": {
-        "region": "oss-cn-beijing",      
-        "accessKeyId": "id",             
-        "accessKeySecret": "secret",     
-        "bucket": "bucketName"           
-    }
-}
-```
-
-### 腾讯云 COS 配置
-```json
-{
+        "region": "oss-cn-beijing",
+        "accessKeyId": "id",
+        "accessKeySecret": "secret",
+        "bucket": "keyflow"
+    },
     "cos": {
-        "SecretId": "id",                
-        "SecretKey": "secret",           
-        "Bucket": "test-1258437818",     
-        "Region": "ap-beijing"           
-    }
-}
-```
-
-### 火山引擎 TOS 配置
-```json
-{
+        "SecretId": "id",
+        "SecretKey": "secret",
+        "Bucket": "test-1258437818",
+        "Region": "ap-beijing"
+    },
     "tos": {
-        "accessKeyId": "id",              
-        "accessKeySecret": "secret",      
-        "region": "cn-beijing",           
-        "bucket": "bucketName"            
+        "accessKeyId": "id",
+        "accessKeySecret": "secret",
+        "region": "cn-beijing",
+        "bucket": "test-deployhub",
+        "remotePath": "."
     }
 }
 ```
