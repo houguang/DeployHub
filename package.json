@@ -1,6 +1,6 @@
 {
   "name": "deployhub",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "一站式前端多平台部署工具，支持FTP、OSS、TOS、COS等多种部署方式。",
   "main": "index.js",
   "scripts": {

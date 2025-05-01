@@ -15,10 +15,12 @@ DeployHub 是一个用于简化部署流程的工具，旨在帮助开发者更�
 npm -D install deployhub
 ```
 
-## 配置说明
-配置文件 `config.json` 包含以下部分：
-```json
-{
+## 使用方法
+
+### 基本使用
+```javascript
+const { uploadViaFTP, uploadViaOSS, uploadViaCOS, uploadViaTOS, uploadDirectory } = require('deployhub');
+const config = {
     "common": {
         "localPath": "./test_files/",
         "remotePath": "/",
@@ -51,27 +53,19 @@ npm -D install deployhub
         "bucket": "test-deployhub",
         "remotePath": "."
     }
-}
-```
-
-## 使用方法
-
-### 基本使用
-```javascript
-const { uploadViaFTP, uploadViaOSS, uploadViaCOS, uploadViaTOS, uploadDirectory } = require('deployhub');
-const config = require('./config.json');
+};
 
 // FTP 上传
-await uploadDirectory(uploadViaFTP, config.ftp, config.common);
+uploadDirectory(uploadViaFTP, config.ftp, config.common);
 
 // OSS 上传
-await uploadDirectory(uploadViaOSS, config.oss, config.common);
+uploadDirectory(uploadViaOSS, config.oss, config.common);
 
 // COS 上传
-await uploadDirectory(uploadViaCOS, config.cos, config.common);
+uploadDirectory(uploadViaCOS, config.cos, config.common);
 
 // TOS 上传
-await uploadDirectory(uploadViaTOS, config.tos, config.common);
+uploadDirectory(uploadViaTOS, config.tos, config.common);
 ```
 
 ### 配置优先级
@@ -83,10 +77,6 @@ await uploadDirectory(uploadViaTOS, config.tos, config.common);
 
 ```
 [平台名称] 当前文件序号/总文件数 [当前文件名称]
-```
-例如：
-```
-[FTP] 1/10 [index.html]
 ```
 
 ## 错误处理
