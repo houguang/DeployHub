@@ -1,5 +1,6 @@
 const ftp = require('basic-ftp');
 const path = require('path');
+const { showProgress } = require('./utils');
 
 /**
  * 创建远程目录（递归）
@@ -35,7 +36,7 @@ async function ensureRemoteDirectory(client, remotePath) {
 async function uploadViaFTP(config, localFilePath, remoteFilePath, currentFileIndex, totalFiles) {
     const client = new ftp.Client();
     try {
-        process.stdout.write(`\r[FTP] ${currentFileIndex + 1}/${totalFiles} [${localFilePath}]`);
+        showProgress('FTP', currentFileIndex, totalFiles, localFilePath);
         await client.access(config);
         
         // 确保远程目录存在

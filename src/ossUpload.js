@@ -1,4 +1,5 @@
 const OSS = require('ali-oss');
+const { showProgress } = require('./utils');
 
 /**
  * 使用 OSS 上传文件
@@ -12,7 +13,7 @@ const OSS = require('ali-oss');
 async function uploadViaOSS(config, localFilePath, remoteFilePath, currentFileIndex, totalFiles) {
     const client = new OSS(config);
     try {
-        process.stdout.write(`\r[OSS] ${currentFileIndex + 1}/${totalFiles} [${localFilePath}]`);
+        showProgress('OSS', currentFileIndex, totalFiles, localFilePath);
         await client.put(remoteFilePath, localFilePath);
     } catch (error) {
         console.error(`\n[OSS] 文件上传失败: ${localFilePath}`, error);

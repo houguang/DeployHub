@@ -1,4 +1,5 @@
 const { TosClient } = require('@volcengine/tos-sdk');
+const { showProgress } = require('./utils');
 
 /**
  * 使用 TOS 上传文件
@@ -12,7 +13,7 @@ const { TosClient } = require('@volcengine/tos-sdk');
 async function uploadViaTOS(config, localFilePath, remoteFilePath, currentFileIndex, totalFiles) {
     const client = new TosClient(config);
     try {
-        process.stdout.write(`\r[TOS] ${currentFileIndex + 1}/${totalFiles} [${localFilePath}]`);
+        showProgress('TOS', currentFileIndex, totalFiles, localFilePath);
         await client.putObject({
             bucket: config.bucket,
             key: remoteFilePath,

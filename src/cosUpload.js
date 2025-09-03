@@ -1,4 +1,5 @@
 const COS = require('cos-nodejs-sdk-v5');
+const { showProgress } = require('./utils');
 
 /**
  * 使用 COS 上传文件
@@ -12,7 +13,7 @@ const COS = require('cos-nodejs-sdk-v5');
 async function uploadViaCOS(config, localFilePath, remoteFilePath, currentFileIndex, totalFiles) {
     const client = new COS(config);
     try {
-        process.stdout.write(`\r[COS] ${currentFileIndex + 1}/${totalFiles} [${localFilePath}]`);
+        showProgress('COS', currentFileIndex, totalFiles, localFilePath);
         await client.putObject({
             Bucket: config.Bucket,
             Region: config.Region,
